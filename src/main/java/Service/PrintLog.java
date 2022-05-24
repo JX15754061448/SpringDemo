@@ -11,10 +11,10 @@ import org.aopalliance.intercept.MethodInvocation;
 public class PrintLog implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
-        System.out.println("在目标方法执行之前打印。。。。。");
+        // System.out.println("在目标方法执行之前打印。。。。。");
         // 执行目标方法
         Object object = methodInvocation.proceed();
-        System.out.println("在目标方法执行之后打印。。。。。");
+        // System.out.println("在目标方法执行之后打印。。。。。");
         return object;
     }
 }

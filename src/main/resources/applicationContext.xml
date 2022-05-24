@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <bean id="userDao" class="Service.UserDaoImpl" />
-    <bean id="userService" class="Service.UserServiceImpl">
-        <property name="userDao" ref="userDao"/>
-    </bean>
-    <bean id="user" class="Model.User" lazy-init="true" destroy-method="destroyMethod">
-        <constructor-arg value="张三"/>
-        <constructor-arg value="18"/>
-    </bean>
-    <bean id="beanProcessor" class="BeanProcessor"/>
+<!--    <bean id="userService" class="Service.UserServiceImpl">-->
+<!--        <property name="userDao" ref="userDao"/>-->
+<!--    </bean>-->
+<!--    <bean id="user" class="Model.User" lazy-init="true" destroy-method="destroyMethod">-->
+<!--        <constructor-arg value="张三"/>-->
+<!--        <constructor-arg value="18"/>-->
+<!--    </bean>-->
+    <bean id="beanProcessor" class="Controller.BeanProcessor"/>
     <bean id="calculateService"  class="Service.CalculateServiceImpl" />
     <bean id="printLog" class="Service.PrintLog" />
     <!--切入点:给哪些方法加入额外功能-->
@@ -19,5 +20,6 @@
         <!--表示：所有的方法都加入PrintLog的额外功能-->
         <aop:advisor advice-ref="printLog" pointcut-ref="pc"/>
     </aop:config>
+    <context:component-scan base-package="Model,Service,Dao"/>
 
 </beans>
